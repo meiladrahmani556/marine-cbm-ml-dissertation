@@ -5,18 +5,40 @@
 
 ## 📌 Project Overview
 
-This project develops and evaluates multiple machine learning models to predict the **degradation coefficient** of a marine gas turbine propulsion system using multivariate numerical sensor data.
+This repository contains the implementation of a machine learning pipeline for predictive modelling of marine gas turbine degradation using the Condition-Based Monitoring (CBM) dataset.
 
-The objective is to design and document a complete end-to-end machine learning pipeline, including:
+The project is structured into a series of executable Jupyter Notebooks that follow a standard machine learning workflow, including:
 
-- Dataset acquisition  
-- Exploratory Data Analysis (EDA)  
-- Data cleaning and preprocessing  
-- Train / validation / test splitting  
-- Model development and optimisation  
-- Performance comparison and evaluation  
+1. Dataset acquisition via Kaggle API  
+2. Exploratory Data Analysis (EDA)  
+3. Data cleaning and preprocessing  
+4. Model development and optimisation  
+5. Model evaluation and comparison
 
-This repository serves as the technical implementation of the dissertation project.
+Notebooks are designed to be **one-click executable** with documented steps and clear purpose.
+
+## 📌 Completed Pipeline Status
+
+As of now, the following parts of the work have been completed:
+
+### 🟢 Notebook 01 – Dataset Acquisition  
+- Kaggle API integration  
+- Download of CBM dataset  
+- Extraction into project structure  
+- Initial inspection of raw CSV  
+- Saving of clean raw dataset
+
+### 🟢 Notebook 02 – Exploratory Data Analysis (EDA)  
+- Dataset overview and shape inspection  
+- Missing value analysis  
+- Target variable distribution  
+- Feature distributions and histograms  
+- Correlation analysis  
+- Feature vs target scatter plots  
+- Outlier detection via boxplots
+
+Next up:  
+- Notebook 03 – Data cleaning and preprocessing
 
 # 🔎 Engineering Understanding
 
@@ -221,14 +243,26 @@ All dependencies are listed in:
 marine-cbm-ml-dissertation/
 │
 ├── data/
-│   ├── raw/
-│   ├── processed/
+│ ├── raw/ ← Raw downloaded dataset (CBM CSV)
+│ ├── processed/ ← Cleaned and preprocessed dataset (to be saved)
 │
-├── notebooks/
-├── models/
-├── results/
-├── requirements.txt
-└── README.md
+├── notebooks/ ← Jupyter notebooks (01, 02, 03, etc.)
+├── models/ ← Saved trained models (to be used later)
+├── results/ ← Training curves, evaluation plots
+├── requirements.txt ← Project dependencies
+└── README.md ← Project documentation
+
+## ▶ How to Run These Notebooks
+
+All notebooks are designed to be one-click executable provided that:
+
+1. You have placed your **Kaggle API key (kaggle.json)** correctly under `~/.kaggle/`  
+2. You have installed the required Python packages listed in `requirements.txt`  
+3. You run notebooks in order (01 → 02 → 03 …)
+
+For Colab users:
+- Upload your `kaggle.json` when prompted by Notebook 01
+- Allow Colab to write files to the `data/raw` directory
 
 # 📌 Conclusions
 
@@ -249,4 +283,10 @@ The optimised neural network achieved the strongest generalisation performance.
 - Advanced hyperparameter optimisation  
 - Feature importance analysis using SHAP  
 - Real-time monitoring simulation  
-- Streamlit deployment for interactive demonstration  
+- Streamlit deployment for interactive demonstration
+
+## 📝 Notes
+
+- The raw dataset may contain formatting irregularities (handled in EDA and preprocessing)
+- All plots are generated using matplotlib and seaborn
+- Random seeds are fixed where appropriate for reproducibility
