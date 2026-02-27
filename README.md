@@ -19,26 +19,55 @@ Notebooks are designed to be **one-click executable** with documented steps and 
 
 ## 📌 Completed Pipeline Status
 
-As of now, the following parts of the work have been completed:
+## 📌 Pipeline Status
 
-### 🟢 Notebook 01 – Dataset Acquisition  
-- Kaggle API integration  
-- Download of CBM dataset  
-- Extraction into project structure  
-- Initial inspection of raw CSV  
-- Saving of clean raw dataset
+The project follows a structured machine learning workflow.  
+Current progress is shown below:
 
-### 🟢 Notebook 02 – Exploratory Data Analysis (EDA)  
-- Dataset overview and shape inspection  
-- Missing value analysis  
-- Target variable distribution  
-- Feature distributions and histograms  
-- Correlation analysis  
-- Feature vs target scatter plots  
-- Outlier detection via boxplots
+### 🟢 Completed
 
-Next up:  
-- Notebook 03 – Data cleaning and preprocessing
+**Notebook 01 – Data Acquisition**
+- Kaggle API integration
+- Dataset download and extraction
+- Initial inspection of raw dataset
+- Project directory structure creation
+
+**Notebook 02 – Exploratory Data Analysis (EDA)**
+- Dataset structure and summary statistics
+- Missing value analysis
+- Feature distribution visualization
+- Correlation analysis
+- Outlier detection
+- Target variable analysis
+
+**Notebook 03 – Data Cleaning & Preprocessing**
+- Numeric conversion of all features
+- Duplicate removal
+- Missing value handling
+- Feature and target separation
+- Train/test split (80/20)
+- Feature scaling (StandardScaler)
+- Export of processed datasets
+
+---
+
+### 🟡 Upcoming
+
+**Notebook 04 – Baseline Model Development**
+- Linear Regression
+- Random Forest Regressor
+- Initial performance comparison
+
+**Notebook 05 – Model Optimisation**
+- Hyperparameter tuning
+- Cross-validation
+- Feature importance analysis
+
+**Notebook 06 – Final Evaluation & Discussion**
+- Model comparison
+- Performance metrics (MAE, RMSE, R²)
+- Result interpretation
+- Final conclusions
 
 # 🔎 Engineering Understanding
 
