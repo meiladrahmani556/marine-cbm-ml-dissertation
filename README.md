@@ -62,23 +62,6 @@ Each row represents a system state described by multiple operational features.
 
 The dataset is downloaded using the Kaggle API.
 
-### Step 1 – Install Kaggle
-
-```bash
-pip install kaggle
-
-### Step 2 – Add API Key
-Place kaggle.json inside:
-~/.kaggle/
-
-### Step 3 – Download Dataset
-
-kaggle datasets download -d kunalnehete/condition-based-monitoring-cbm-in-marine-system
-
-### Step 4 – Extract Files 
-Extract contents into:
-data/raw/
-
 ---
 
 # 📈 Exploratory Data Analysis (EDA)
