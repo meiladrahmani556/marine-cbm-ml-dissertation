@@ -58,7 +58,6 @@ Current progress is shown below:
 
 ### 🟡 Upcoming
 
-
 **Notebook 05 – Model Optimisation**
 - Hyperparameter tuning
 - Cross-validation
