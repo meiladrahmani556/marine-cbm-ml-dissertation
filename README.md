@@ -49,14 +49,15 @@ Current progress is shown below:
 - Feature scaling (StandardScaler)
 - Export of processed datasets
 
----
-
-### 🟡 Upcoming
-
 **Notebook 04 – Baseline Model Development**
 - Linear Regression
 - Random Forest Regressor
 - Initial performance comparison
+
+---
+
+### 🟡 Upcoming
+
 
 **Notebook 05 – Model Optimisation**
 - Hyperparameter tuning
