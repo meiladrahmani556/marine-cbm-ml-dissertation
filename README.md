@@ -54,14 +54,14 @@ Current progress is shown below:
 - Random Forest Regressor
 - Initial performance comparison
 
----
-
-### 🟡 Upcoming
-
 **Notebook 05 – Model Optimisation**
 - Hyperparameter tuning
 - Cross-validation
 - Feature importance analysis
+
+---
+
+### 🟡 Upcoming
 
 **Notebook 06 – Final Evaluation & Discussion**
 - Model comparison
