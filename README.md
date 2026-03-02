@@ -22,14 +22,22 @@ The goal is to build and rigorously evaluate regression models that can accurate
 
 ## 🗂 Repository Structure
 Marine - cbm - ml - dissertation/
+
 │
+
 ├── data/
+
 │ ├── raw/ # Raw dataset
 │ ├── processed/ # Processed ML inputs (generated in notebooks)
+
 │
+
 ├── models/ # Saved model artifacts
+
 ├── notebooks/ # All Jupyter notebooks
+
 ├── requirements.txt # Required Python libraries
+
 └── README.md # Project documentation
 
 
@@ -187,7 +195,7 @@ Download is performed via Kaggle API in Notebook 01.
 
 
 pip install -r requirements.txt
-`bash
+
 3. Run notebook in order:
 
 01 → 02 → 03 → 04 → 05 → 06
