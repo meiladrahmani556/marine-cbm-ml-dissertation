@@ -185,7 +185,7 @@ Download is performed via Kaggle API in Notebook 01.
 1. Clone repository  
 2. Install dependencies:
 
-```bash
+
 pip install -r requirements.txt
 
 3. Run notebook in order:
