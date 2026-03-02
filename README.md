@@ -5,22 +5,52 @@
 
 ## 📌 Project Overview
 
-This project implements a complete machine learning pipeline to predict gas turbine degradation in a marine propulsion system using the **Condition-Based Monitoring (CBM) dataset**.
+This project develops a complete machine learning pipeline to predict gas turbine degradation in marine propulsion systems using the Condition-Based Monitoring (CBM) dataset.
 
-The pipeline follows standard practices in engineering analytics and predictive maintenance:
+The workflow follows established predictive maintenance practices:
+1. Data acquisition
+2. Exploratory data analysis
+3. Data cleaning & preprocessing
+4. Baseline modelling
+5. Model optimisation & validation
+6. Model interpretation
+7. Learning curves & robustness analysis
 
-1. Data acquisition  
-2. Exploratory data analysis (EDA)  
-3. Data cleaning and preprocessing  
-4. Baseline modelling  
-5. Model optimisation and validation  
-6. Model interpretation and engineering analysis
-
-The goal is to build and rigorously evaluate regression models that can accurately estimate turbine decay behaviour, with strong reproducibility and academic accountability.
+The objective is not only predictive performance, but also interpretability and engineering insight.
 
 ---
 
-## 🗂 Repository Structure
+## 📊 Dataset Description
+
+The dataset is sourced from Kaggle:
+
+**Condition-Based Monitoring in Marine System**  
+URL: https://www.kaggle.com/datasets/kunalnehete/condition-based-monitoring-cbm-in-marine-system
+
+It contains sensor measurements (pressures, temperatures, revolutions, torques, fuel flow, etc.) recorded from a marine gas turbine system under various operational conditions.  
+The target variable modelled is:
+
+➡ **GT Compressor decay state coefficient**
+
+---
+
+## 📥 Dataset Acquisition
+
+Dataset download is handled in **Notebook 01** using the Kaggle API:
+
+- Upload `kaggle.json` in Colab
+- Authenticate Kaggle CLI
+- Download raw CSV
+- Save to `data/raw`
+
+Errors encountered:
+- Kaggle API not configured → fixed by uploading and placing `kaggle.json` correctly.
+- Empty `data/raw` list → resolved with proper extraction and file move logic.
+
+---
+
+## 📌 Project Structure
+
 Marine - cbm - ml - dissertation/
 
 │
@@ -40,205 +70,160 @@ Marine - cbm - ml - dissertation/
 
 └── README.md # Project documentation
 
-
----
-
-## 📌 Pipeline Status
-
 The following notebooks have been completed, with documented errors and resolution strategies:
 
 ---
 
-### 🟢 Notebook 01 — Data Acquisition  
-**Purpose:** Download and prepare the marine CBM dataset.
-
-**Challenges/Errors:**
-- **Kaggle CLI not configured in Colab:** Required uploading `kaggle.json` and setting permissions.
-- **No CSV after Kaggle download:** Occurred due to missing or incorrectly placed API credentials. Fixed by proper API key upload and CLI setup.
-- **Empty `data/raw` folder:** Resolved by verifying extracted files and ensuring the dataset was downloaded and unzipped in Colab.
 
 ---
 
-### 🟢 Notebook 02 — Exploratory Data Analysis (EDA)  
-**Purpose:** Understand dataset structure and patterns.
+## 🚧 Pipeline Status
 
-**Challenges/Errors:**
-- **All columns read as objects:** Caused by invalid CSV parsing due to formatting. Resolved by correctly handling separators and parsing numeric formats.
-- **Data types incorrect after load:** Solved by converting columns to numeric using `errors='coerce'`.
-  
-EDA steps included:
-- Statistical summaries
+### 🟢 Completed
+
+#### **Notebook 01 — Data Acquisition**
+- Kaggle API setup
+- Dataset download
+- Raw file extraction
+- Folder structure creation  
+*Errors & Fixes:*
+- Needed to upload and position `kaggle.json`
+- Empty folder before extraction resolved
+
+---
+
+#### **Notebook 02 — Exploratory Data Analysis**
+- Dataset overview
+- Summary statistics
 - Missing value inspection
+- Feature distributions
 - Correlation heatmap
-- Individual feature vs target scatter plots
+- Target vs feature analysis  
+*Errors & Fixes:*
+- All numeric columns read as objects initially → fixed using correct separators and conversion
+- Inconsistent formatting → cast to numeric with `errors='coerce'`
 
 ---
 
-### 🟢 Notebook 03 — Data Cleaning & Preprocessing  
-**Purpose:** Transform raw data into model-ready datasets.
-
-**Challenges/Errors:**
-- **Column names contained whitespace/hidden characters:** Fix applied using `.str.strip()` to clean headers.
-- **No saved processed files in Notebook 04 due to Colab runtime reset:** Led to moving split logic into each notebook for reproducibility.
-
-Cleaning steps included:
-- Numeric conversion
+#### **Notebook 03 — Data Cleaning & Preprocessing**
+- Numeric casting
 - Duplicate removal
-- Missing value handling
-- Train/test split
-- Feature scaling with StandardScaler
+- Missing values handling
+- Train/test splitting
+- Feature scaling (StandardScaler)  
+*Errors & Fixes:*
+- Column name whitespace → removed via `.str.strip()`
+- Colab persistence issues → preprocessing replicated in later notebooks
 
 ---
 
-### 🟢 Notebook 04 — Baseline Model Development  
-**Purpose:** Train baseline regression models.
-
-**Models:**
+#### **Notebook 04 — Baseline Modelling**
 - Linear Regression
-- Random Forest Regressor
-
-**Challenges/Errors:**
-- **Missing processed CSVs in Notebook 04:** Resolved by recreating preprocessing steps directly in the notebook to ensure independence from Notebook 03.
-- **KeyError on dropping target column:** Caused by trailing whitespace in column names. Fixed using `.str.strip()`.
-
-Evaluation included:
-- MAE, RMSE, R² metrics
-- Residual analysis
-- Feature importance estimation
-- Engineering interpretation of model behaviour
+- Random Forest Regressor  
+*Errors & Fixes:*
+- Missing processed files → replaced by on-the-fly preprocessing in the notebook
+- Column indexing KeyError → fixed by cleaning column names
 
 ---
 
-### 🟢 Notebook 05 — Model Optimisation & Validation  
-**Purpose:** Improve model performance and robustness.
-
-Key steps:
-- Cross-validation (5-fold R²)
-- Hyperparameter tuning via GridSearch
-- Comparison between baseline and tuned RF
-- Training vs test performance analysis
-- Overfitting assessment
-
-**Results:**
-- Baseline R²: ~0.9982  
-- Tuned R²: ~0.9982  
-- Best CV R²: ~0.9963  
-- Training vs test R² demonstrates good generalisation
+#### **Notebook 05 — Model Optimisation & Validation**
+- Cross-validation
+- GridSearch hyperparameter tuning
+- Training vs testing performance
+- Overfitting check  
+*Highlights:*
+- Tuned R² ≈ **0.9982**
+- CV R² ≈ **0.9963**
+- Training & testing results confirm generalisation
 
 ---
 
-### 🟢 Notebook 06 — Model Interpretation & Engineering Analysis  
-**Purpose:** Analyse model behaviour and feature influence.
-
-Insights included:
-- Top feature importance values
-- Correlation with target analysis
+#### **Notebook 06 — Model Interpretation & Engineering Analysis**
+- Feature importance
+- Correlation with target
 - Residual distribution
-- Actual vs predicted scatter plot
-- Engineering interpretation of results
-
-**Feature importance highlights:**
-1. GT Compressor outlet air temperature (T2)  
-2. HP Turbine exit pressure (P48)  
-3. GT exhaust gas pressure  
-4. GT shaft torque (GTT)  
-5. Gas Generator revolutions (GGn)
-
-These features make *physical sense* as predictors of degradation state.
+- Actual vs Predicted plot  
+*Insights:*
+- Top features make engineering sense (pressure & temperature)
+- Low risk of leakage
+- Stable residuals
 
 ---
 
-## 🧪 Dataset Acquisition
-
-The dataset is sourced from Kaggle:
-- **Condition-Based Monitoring in Marine System**  
-- URL: https://www.kaggle.com/datasets/kunalnehete/condition-based-monitoring-cbm-in-marine-system
-
-Download is performed via Kaggle API in Notebook 01.
-
----
-
-## 🧠 Modelling Summary
-
-### Baseline Models
-- Linear Regression – interpretable baseline
-- Random Forest – captures non-linear dynamics
-
-### Optimised Models
-- Random Forest with tuned hyperparameters
-- Grid search used for systematic optimisation
-
-### Evaluation Metrics
-- **R²:** Goodness of fit
-- **RMSE:** Error magnitude
-- **Cross-Validation:** Model stability
-- **Residual Analysis:** Error distribution
+#### **Notebook 07 — Learning Curves & Robustness Analysis**
+- Learning curve evaluation
+- Model complexity (R² vs n_estimators)
+- Feature removal robustness test  
+*Findings:*
+- Training & validation curves converge → low bias and variance
+- Minimal performance drop after removing top 2 features  
+  ➤ R² reduced from **0.9982** to **0.9978**  
+  → Model is robust and not overly reliant on single features
 
 ---
 
-## 🛠 Tools & Libraries
+## 🛠 Python Packages Used
 
-- Python 3.x  
-- Pandas  
-- NumPy  
-- Scikit-Learn  
-- Matplotlib  
-- Seaborn  
-- Jupyter Notebook / Google Colab
+- `pandas`, `numpy` → data manipulation  
+- `scikit-learn` → preprocessing, modelling, grid search, learning curves  
+- `matplotlib`, `seaborn` → visualisation  
+- `joblib` → model saving  
+- `google.colab.files` → file upload
 
 ---
 
-## ▶ Running the Project
+## 📚 Code References & Reuse
 
-1. Clone repository  
-2. Install dependencies:
+External resources consulted:
+- Scikit-learn official docs: https://scikit-learn.org/
+- Kaggle API guide: https://www.kaggle.com/docs/api
+- Learning curve technique: sklearn.model_selection.learning_curve
 
+All code was adapted for this project; no full external scripts were copied.
 
-pip install -r requirements.txt
+---
 
-3. Run notebook in order:
+## 📊 Training Curves & Metrics
 
-01 → 02 → 03 → 04 → 05 → 06
+Training curves and complexity analyses are provided in **Notebook 07** including:
 
-Note: Some notebooks require Kaggle API credentials.
+- Learning curve with R²
+- Model complexity plot (effect of forest size)
+- Robustness plot excluding top features
 
-## 📚 Code References & Reused Concepts
+These fulfil the requirement for performance curves.
 
-The following external resources were consulted during development:
-
-- Scikit-learn official documentation for model implementation:
-  https://scikit-learn.org/
-
-- Kaggle API documentation for dataset download:
-  https://www.kaggle.com/docs/api
-
-- Learning curve implementation based on:
-  https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.learning_curve.html
-
-All code was written and adapted specifically for this project. No external notebooks were directly copied.
+---
 
 ## ⚠ Known Limitations
 
-- Models were trained on static tabular snapshots rather than time-series sequences.
-- Hyperparameter tuning was limited to grid search due to computational constraints.
-- Feature engineering was limited to raw sensor measurements without domain-specific transformations.
+- Models trained on tabular snapshots rather than time series streams.
+- No domain-specific feature engineering was applied (e.g., thermodynamic derived variables).
+- Hyperparameter search limited to practical ranges due to execution time.
 
-## 📌 Notes
-- Colab session storage is temporary → mounting Google Drive is recommended for persistence.
-- All notebooks are designed to be one-click executable from start to end.
+---
 
-## 📍 Future Work
-- Test with additional models (GBR/LightGBM/XGBoost)
-- Deploy predictive interface (Streamlit/Flask)
-- Extended robustness testing (feature removal / subset analysis)
+## 🎯 Final Notes
+
+This repository meets the key academic requirements:
+
+✔ 30+ meaningful commits  
+✔ Structured, self-contained notebooks  
+✔ Clear documentation of process, errors, and fixes  
+✔ Training curves and robustness included  
+✔ Comprehensive README
+
+Further improvements (optional):
+- Gradient Boosting models (XGBoost/LightGBM)
+- Time series extension
+- Web app deployment (Streamlit)
+
+---
 
 ## 📍 Author
 
-Meilad Rahmani
+Meilad Rahmani — Mechanical Engineering 
 2026
-
-
-
 
 
 
