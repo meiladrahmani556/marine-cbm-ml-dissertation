@@ -11,7 +11,7 @@
 ## 🚀 Quick Start
 
 **To run any notebook:**
-1. Go to the `JupyterNotebook/` folder in this repo
+1. Go to the `Notebook_1_Click/` folder in this repo
 2. Click the notebook you want to open
 3. Click **Open in Colab** at the top of the notebook
 4. Click **Runtime → Run all**
