@@ -6,6 +6,26 @@
 **Supervisor:** Dr Sergey Yakalov | **University:** University of Portsmouth | **Year:** 2025–26
 
 ---
+---
+
+## 🚀 Quick Start
+
+**To run any notebook:**
+1. Go to the `JupyterNotebook/` folder in this repo
+2. Click the notebook you want to open
+3. Click **Open in Colab** at the top of the notebook
+4. Click **Runtime → Run all**
+5. Upload `Conditional_Base_Monitoring in Marine_System.csv` when prompted
+6. All cells will run automatically from top to bottom
+
+**Dataset download:**
+- Download the CSV from [Kaggle](https://www.kaggle.com/datasets/kunalnehete/condition-based-monitoring-cbm-in-marine-system)
+- Filename: `Conditional_Base_Monitoring in Marine_System.csv`
+
+**Note:** Notebook 01 requires a `kaggle.json` API key for automated download. All other notebooks only need the CSV file.
+
+---
+
 
 ## 📌 Project Overview
 
@@ -25,6 +45,8 @@ The pipeline covers:
 9. Robustness testing
 
 The objective is predictive accuracy, interpretability, and engineering insight into which sensor readings drive compressor degradation.
+
+**Project status:** All 8 notebooks complete and verified one-click executable. Final dissertation report in progress — submission deadline 13 May 2026.
 
 ---
 
@@ -97,6 +119,12 @@ marine-cbm-ml-dissertation/
 ```
 
 All notebooks are **one-click executable** on Google Colab. Each notebook begins by mounting Google Drive and loading the dataset directly — no dependency on output from previous notebooks.
+
+**How to run any notebook:**
+1. Open the notebook in Google Colab
+2. Run all cells from top to bottom
+3. Upload the CSV file (`Conditional_Base_Monitoring in Marine_System.csv`) when the upload dialog appears
+4. All preprocessing, training, and evaluation runs automatically
 
 ---
 
@@ -279,6 +307,7 @@ All code was written and adapted specifically for this project. No external scri
 - Hyperparameter search is limited to practical ranges due to Google Colab execution time constraints
 - Dataset is simulation-based — results may not directly generalise to live naval gas turbines without further validation
 - Google Colab sessions reset between runs — all notebooks reproduce preprocessing steps at the top to compensate
+- All notebooks have been verified one-click executable on a fresh Colab runtime as of May 2026
 
 **Known bugs:** No unresolved bugs at time of submission. All previously encountered errors (Kaggle API, column name whitespace, file persistence) have been resolved and documented within the relevant notebooks.
 
